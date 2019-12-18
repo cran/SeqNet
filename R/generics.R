@@ -33,7 +33,7 @@ get_adjacency_matrix.default <- function(x, ...) {
 #' @inherit get_adjacency_matrix
 #' @export
 get_adjacency_matrix.matrix <- function(x, ...) {
-  if(!(class(x) == "matrix")) 
+  if(!is(x, "matrix")) 
     stop(paste0("'", deparse(substitute(x)), "' is not a 'matrix' object."))
   if(dim(x)[1] != dim(x)[2])
     stop(paste0("'", deparse(substitute(x)), "' is not a square matrix."))
@@ -87,7 +87,7 @@ get_association_matrix.default <- function(x, tol = 10^-13, ...) {
 #' @inherit get_association_matrix
 #' @export
 get_association_matrix.matrix <- function(x, tol = 10^-13, ...) {
-  if(!(class(x) == "matrix")) 
+  if(!is(x, "matrix")) 
     stop(paste0("'", deparse(substitute(x)), "' is not a 'matrix' object."))
   if(dim(x)[1] != dim(x)[2])
     stop(paste0("'", deparse(substitute(x)), "' is not a square matrix."))
@@ -113,7 +113,8 @@ get_association_matrix.matrix <- function(x, tol = 10^-13, ...) {
 #' @param ... Additional arguments.
 #' @note If a matrix is provided, it is assumed to be a partial correlation matrix;
 #' a warning is given in this case. To avoid the warning message, convert the
-#' matrix into a network object using 'create_network_from_association_matrix()'.
+#' matrix into a network object using 
+#' \code{\link{create_network_from_association_matrix}}.
 #' @return A covariance matrix.
 #' @export
 #' @examples 
@@ -156,8 +157,8 @@ get_sigma.matrix <- function(x, ...) {
 #' 
 #' @param x Either a 'network', 'network_module', or 'matrix' object.
 #' @param ... Additional arguments.
-#' object are weighted by 0s and 1s, and returns TRUE otherwise. If there
-#' are no connections in the module, then this function returns TRUE.
+#' object are weighted by 0s and 1s, and returns \code{TRUE} otherwise. If there
+#' are no connections in the module, then this function returns \code{TRUE}.
 #' @export
 #' @examples 
 #' # Create a random network with 10 nodes. 
@@ -183,7 +184,7 @@ is_weighted.default <- function(x, ...) {
 #' @inherit is_weighted
 #' @export
 is_weighted.matrix <- function(x, ...) {
-  if(!(class(x) == "matrix")) 
+  if(!is(x, "matrix")) 
     stop(paste0("'", deparse(substitute(x)), "' is not a 'matrix' object."))
   if(dim(x)[1] != dim(x)[2])
     stop(paste0("'", deparse(substitute(x)), "' is not a square matrix."))
@@ -228,7 +229,7 @@ remove_weights.default <- function(x, ...) {
 #' @inherit remove_weights
 #' @export
 remove_weights.matrix <- function(x, ...) {
-  if(!(class(x) == "matrix")) 
+  if(!is(x, "matrix")) 
     stop(paste0("'", deparse(substitute(x)), "' is not a 'matrix' object."))
   if(dim(x)[1] != dim(x)[2])
     stop(paste0("'", deparse(substitute(x)), "' is not a square matrix."))
@@ -289,17 +290,18 @@ get_node_names.matrix <- function(x, ...) {
 #' 
 #' @param x The 'network', 'network_module', or 'matrix' object to modify.
 #' @param node The node to rewire.
-#' @param prob_rewire A value between 0 and 1, inclusive. Each connection to 'node' 
-#' will be rewired with probability equal to 'prob_rewire'. Note, the degree of 
-#' 'node' is unchanged after this operation.
+#' @param prob_rewire A value between 0 and 1, inclusive. Each connection to 
+#' \code{node} will be rewired with probability equal to \code{prob_rewire}. 
+#' Note, the degree of \code{node} is unchanged after this operation.
 #' @param weights (Optional) A vector of weights for each node. These are used
 #' in addition to the degree of each node when sampling nodes to rewire.
 #' @param alpha A positive value used to parameterize the Beta distribution.
 #' @param beta  A positive value used to parameterize the Beta distribution. 
-#' @param epsilon A small constant added to the sampling probability of each node.
-#' @param run_checks If TRUE and 'x' is a matrix, then it is checked that 'x' is an
-#' adjacency matrix. This catches the case where 'x' is a weighted matrix, in which
-#' case the weights are removed and a warning is given. 
+#' @param epsilon A small constant added to the sampling probability of each 
+#' node.
+#' @param run_checks If \code{TRUE} and 'x' is a matrix, then it is checked that 
+#' 'x' is an adjacency matrix. This catches the case where 'x' is a weighted 
+#' matrix, in which case the weights are removed and a warning is given. 
 #' @param ... Additional arguments.
 #' @return The modified object.
 #' @export
@@ -351,16 +353,24 @@ rewire_connections_to_node.matrix <- function(x,
                                               epsilon = 10^-5,
                                               run_checks = TRUE,
                                               ...) {
-  if(!(class(x) == "matrix")) 
+  if(!is(x, "matrix")) 
     stop(paste0("'", deparse(substitute(x)), "' is not a 'matrix' object."))
   if(run_checks && is_weighted(x)) {
     warning("'", deparse(substitute(x)), "' is weighted.",
             "Edge weights are removed prior to rewiring.")
     x <- remove_weights(x)
   }
-  if(run_checks && !is_adjacency_cpp(x)) {
+  if(run_checks) {
     # Stop if the matrix is not an adjacency matrix (even after removing weights).
-    stop("'", deparse(substitute(x)), "' is not an adjacency matrix.")
+    flag <- check_adjacency_cpp(x)
+    if(flag == 1)
+      stop("'", deparse(substitute(x)), "' is not a square matrix.")
+    if(flag == 2)
+      stop("'", deparse(substitute(x)), "' has nonzero diagonal values.")
+    if(flag == 3)
+      stop("'", deparse(substitute(x)), "' is not symmetric.")
+    if(flag == 4)
+      stop("'", deparse(substitute(x)), "' contains values that are not 0 or 1.")
   }
   
   nodes <- get_node_names(x)
@@ -443,15 +453,16 @@ rewire_connections_to_node.matrix <- function(x,
 #' 
 #' @param x The 'network', 'network_module', or 'matrix' object to modify.
 #' @param prob_rewire A value between 0 and 1. The connections to each node 
-#' will be rewired with probability equal to 'prob_rewire'. 
+#' will be rewired with probability equal to \code{prob_rewire}. 
 #' @param weights (Optional) A vector of weights for each node. These are used
 #' in addition to the degree of each node when sampling a node to rewire to.
 #' @param alpha A positive value used to parameterize the Beta distribution.
 #' @param beta  A positive value used to parameterize the Beta distribution. 
-#' @param epsilon A small constant added to the sampling probability of each node.
-#' @param run_checks If TRUE and 'x' is a matrix, then it is checked that 'x' is an
-#' adjacency matrix. This catches the case where 'x' is a weighted matrix, in which
-#' case the weights are removed and a warning is given. 
+#' @param epsilon A small constant added to the sampling probability of each 
+#' node.
+#' @param run_checks If \code{TRUE} and 'x' is a matrix, then it is checked that 
+#' 'x' is an adjacency matrix. This catches the case where 'x' is a weighted 
+#' matrix, in which case the weights are removed and a warning is given. 
 #' @param ... Additional arguments.
 #' @return The modified module.
 #' @note When applied to a network object, all modules in the network are
@@ -502,16 +513,24 @@ rewire_connections.matrix <- function(x,
                                       epsilon = 10^-5,
                                       run_checks = TRUE,
                                       ...) {
-  if(!(class(x) == "matrix")) 
+  if(!is(x, "matrix")) 
     stop(paste0("'", deparse(substitute(x)), "' is not a 'matrix' object."))
   if(run_checks && is_weighted(x)) {
     warning("'", deparse(substitute(x)), "' is weighted.",
             "Edge weights are removed prior to rewiring.")
     x <- remove_weights(x)
   }
-  if(run_checks && !is_adjacency_cpp(x)) {
+  if(run_checks) {
     # Stop if the matrix is not an adjacency matrix (even after removing weights).
-    stop("'", deparse(substitute(x)), "' is not an adjacency matrix.")
+    flag <- check_adjacency_cpp(x)
+    if(flag == 1)
+      stop("'", deparse(substitute(x)), "' is not a square matrix.")
+    if(flag == 2)
+      stop("'", deparse(substitute(x)), "' has nonzero diagonal values.")
+    if(flag == 3)
+      stop("'", deparse(substitute(x)), "' is not symmetric.")
+    if(flag == 4)
+      stop("'", deparse(substitute(x)), "' contains values that are not 0 or 1.")
   }
   
   for(i in get_node_names(x)) {
@@ -529,11 +548,11 @@ rewire_connections.matrix <- function(x,
 #' 
 #' @param x The 'network', 'network_module', or 'matrix' object to modify.
 #' @param node The node to unwire.
-#' @param prob_remove A value between 0 and 1. Each connection to 'node_index' 
-#' will be removed with probability equal to 'prob_remove'.
-#' @param run_checks If TRUE and 'x' is a matrix, then it is checked that 'x' is an
-#' adjacency matrix. This catches the case where 'x' is a weighted matrix, in which
-#' case the weights are removed and a warning is given. 
+#' @param prob_remove A value between 0 and 1. Each connection to \code{node} 
+#' will be removed with probability equal to \code{prob_remove}.
+#' @param run_checks If \code{TRUE} and 'x' is a matrix, then it is checked that 
+#' 'x' is an adjacency matrix. This catches the case where 'x' is a weighted 
+#' matrix, in which case the weights are removed and a warning is given. 
 #' @param ... Additional arguments.
 #' @return The modified adjacency matrix.
 #' @export
@@ -573,16 +592,24 @@ remove_connections_to_node.matrix <- function(x,
                                               prob_remove,
                                               run_checks = TRUE,
                                               ...) {
-  if(!(class(x) == "matrix")) 
+  if(!is(x, "matrix")) 
     stop(paste0("'", deparse(substitute(x)), "' is not a 'matrix' object."))
   if(run_checks && is_weighted(x)) {
     warning("'", deparse(substitute(x)), "' is weighted.",
             "Edge weights are removed prior to rewiring.")
     x <- remove_weights(x)
   }
-  if(run_checks && !is_adjacency_cpp(x)) {
+  if(run_checks) {
     # Stop if the matrix is not an adjacency matrix (even after removing weights).
-    stop("'", deparse(substitute(x)), "' is not an adjacency matrix.")
+    flag <- check_adjacency_cpp(x)
+    if(flag == 1)
+      stop("'", deparse(substitute(x)), "' is not a square matrix.")
+    if(flag == 2)
+      stop("'", deparse(substitute(x)), "' has nonzero diagonal values.")
+    if(flag == 3)
+      stop("'", deparse(substitute(x)), "' is not symmetric.")
+    if(flag == 4)
+      stop("'", deparse(substitute(x)), "' contains values that are not 0 or 1.")
   }
   
   nodes <- get_node_names(x)
@@ -629,10 +656,10 @@ remove_connections_to_node.matrix <- function(x,
 #' 
 #' @param x The 'network', 'network_module', or 'matrix' object to modify.
 #' @param prob_remove A value between 0 and 1. Each edge will be removed with 
-#' probability equal to 'prob_remove'.
-#' @param run_checks If TRUE and 'x' is a matrix, then it is checked that 'x' is an
-#' adjacency matrix. This catches the case where 'x' is a weighted matrix, in which
-#' case the weights are removed and a warning is given. 
+#' probability equal to \code{prob_remove}.
+#' @param run_checks If \code{TRUE} and 'x' is a matrix, then it is checked that 
+#' 'x' is an adjacency matrix. This catches the case where 'x' is a weighted 
+#' matrix, in which case the weights are removed and a warning is given. 
 #' @param ... Additional arguments.
 #' @return The modified adjacency matrix.
 #' @export
@@ -669,16 +696,24 @@ remove_connections.matrix <- function(x,
                                       prob_remove,
                                       run_checks = TRUE,
                                       ...) {
-  if(!(class(x) == "matrix")) 
+  if(!is(x, "matrix")) 
     stop(paste0("'", deparse(substitute(x)), "' is not a 'matrix' object."))
   if(run_checks && is_weighted(x)) {
     warning("'", deparse(substitute(x)), "' is weighted.",
             "Edge weights are removed prior to rewiring.")
     x <- remove_weights(x)
   }
-  if(run_checks && !is_adjacency_cpp(x)) {
+  if(run_checks) {
     # Stop if the matrix is not an adjacency matrix (even after removing weights).
-    stop("'", deparse(substitute(x)), "' is not an adjacency matrix.")
+    flag <- check_adjacency_cpp(x)
+    if(flag == 1)
+      stop("'", deparse(substitute(x)), "' is not a square matrix.")
+    if(flag == 2)
+      stop("'", deparse(substitute(x)), "' has nonzero diagonal values.")
+    if(flag == 3)
+      stop("'", deparse(substitute(x)), "' is not symmetric.")
+    if(flag == 4)
+      stop("'", deparse(substitute(x)), "' contains values that are not 0 or 1.")
   }
   
   p <- ncol(x)

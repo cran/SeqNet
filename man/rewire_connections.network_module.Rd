@@ -12,7 +12,7 @@
 \item{x}{The 'network', 'network_module', or 'matrix' object to modify.}
 
 \item{prob_rewire}{A value between 0 and 1. The connections to each node 
-will be rewired with probability equal to 'prob_rewire'.}
+will be rewired with probability equal to \code{prob_rewire}.}
 
 \item{weights}{(Optional) A vector of weights for each node. These are used
 in addition to the degree of each node when sampling a node to rewire to.}
@@ -21,11 +21,12 @@ in addition to the degree of each node when sampling a node to rewire to.}
 
 \item{beta}{A positive value used to parameterize the Beta distribution.}
 
-\item{epsilon}{A small constant added to the sampling probability of each node.}
+\item{epsilon}{A small constant added to the sampling probability of each 
+node.}
 
-\item{run_checks}{If TRUE and 'x' is a matrix, then it is checked that 'x' is an
-adjacency matrix. This catches the case where 'x' is a weighted matrix, in which
-case the weights are removed and a warning is given.}
+\item{run_checks}{If \code{TRUE} and 'x' is a matrix, then it is checked that 
+'x' is an adjacency matrix. This catches the case where 'x' is a weighted 
+matrix, in which case the weights are removed and a warning is given.}
 
 \item{...}{Additional arguments.}
 }

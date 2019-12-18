@@ -27,7 +27,7 @@ gen_gaussian <- function(n, ...) {
   
   # If a single, unlisted network was provided, then the generated results are 
   # returned in the same format, unlisted.
-  if(length(list(...)) == 1 && class(list(...)[[1]]) == "network") {
+  if(length(list(...)) == 1 && is(list(...)[[1]], "network")) {
     single_network <- TRUE
   } else {
     single_network <- FALSE
@@ -114,10 +114,10 @@ gen_gaussian <- function(n, ...) {
 #' connection that is common across different networks will also have the same 
 #' partial correlation weight across networks.
 #' @param ... The 'network' objects to modify.
-#' @param k An integer that ensures the matrix inverse is numerically stable. 
-#' k = 2.5 is default; higher values will allow for larger values of
-#' partial correlations (and will result in a wider distribution of 
-#' Pearson correlations).
+#' @param k An positive number used to ensure that the matrix inverse is 
+#' numerically stable.  \code{k = 2.5} is the default value; higher values 
+#' will allow for larger values of partial correlations (and will result in a 
+#' wider distribution of Pearson correlations).
 #' @param rweights A generator for initial weights in the network. By default, 
 #' values are generated uniformly from (-1, -0.5) U (0.5, 1). The weights will
 #' be adjusted so that the sign of a generated weight and the sign of the
@@ -139,7 +139,7 @@ gen_partial_correlations <- function(...,
   network_list <- get_network_arguments(...)
   
   # If a single network was provided, the updated network is returned unlisted.
-  if(length(list(...)) == 1 && class(list(...)[[1]]) == "network") {
+  if(length(list(...)) == 1 && is(list(...)[[1]], "network")) {
     single_network <- TRUE
   } else {
     single_network <- FALSE
@@ -234,8 +234,8 @@ gen_partial_correlations <- function(...,
 #' Internal function to check if a list of networks all contain the same nodes.
 #' 
 #' @param network_list A list of 'network' objects.
-#' @return A logical value; TRUE indicates the networks contain the same nodes,
-#' FALSE indicates otherwise.
+#' @return A logical value; \code{TRUE} indicates the networks contain the same 
+#' nodes, and \code{FALSE} indicates otherwise.
 all_networks_contain_same_nodes <- function(network_list) {
   n_networks <- length(network_list)
   if(n_networks > 1) {
@@ -267,7 +267,7 @@ get_network_arguments <- function(...) {
   }
   
   # If a list of networks were provided, unlist to obtain original list.
-  if(class(network_list[[1]]) == "list") {
+  if(is(network_list[[1]], "list")) {
     network_list <- network_list[[1]]
     network_names <- colnames(network_list)
   } else {
@@ -283,7 +283,7 @@ get_network_arguments <- function(...) {
   }
   
   # Check that network_list contains all 'network' objects.
-  index <- which(sapply(network_list, class) != "network")
+  index <- which(sapply(network_list, function(nw) !is(nw, "network")))
   if(length(index) == 1) {
     stop(paste0("Argument '", 
                 network_names[index], 
@@ -300,9 +300,10 @@ get_network_arguments <- function(...) {
 #' Internal function to check if a list of networks all contain the same modules.
 #' 
 #' @param network_list A list of 'network' objects.
-#' @return A logical value; TRUE indicates the networks contain the same modules,
-#' FALSE indicates otherwise. Note, this only checks that the modules contain
-#' the same nodes - the structure of the modules are allowed to differ.
+#' @return A logical value; \code{TRUE} indicates the networks contain the same 
+#' modules, and \code{FALSE} indicates otherwise. Note, this only checks that 
+#' the modules contain the same nodes - the structure of the modules are allowed 
+#' to differ.
 all_networks_contain_same_modules <- function(network_list) {
   n_networks <- length(network_list)
   if(n_networks > 1) {

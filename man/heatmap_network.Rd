@@ -12,12 +12,13 @@ heatmap_network(network, main = NULL,
 
 \item{main}{A string containing the title for the graph.}
 
-\item{col}{Color palatte used for heatmap. See ?heatmap for details.}
+\item{col}{Color palatte used for heatmap. See \code{link[stats]{heatmap}} 
+for details.}
 
-\item{...}{Additional arguments passed to `heatmap()`.}
+\item{...}{Additional arguments passed to \code{link[stats]{heatmap}}.}
 }
 \value{
-The matrix used to create the heatmap
+The matrix used to create the heatmap.
 }
 \description{
 This function plots the given network as a heatmap to visualize its

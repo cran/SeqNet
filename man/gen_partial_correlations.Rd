@@ -10,10 +10,10 @@ gen_partial_correlations(..., k = 2.5, rweights = function(n)
 \arguments{
 \item{...}{The 'network' objects to modify.}
 
-\item{k}{An integer that ensures the matrix inverse is numerically stable. 
-k = 2.5 is default; higher values will allow for larger values of
-partial correlations (and will result in a wider distribution of 
-Pearson correlations).}
+\item{k}{An positive number used to ensure that the matrix inverse is 
+numerically stable.  \code{k = 2.5} is the default value; higher values 
+will allow for larger values of partial correlations (and will result in a 
+wider distribution of Pearson correlations).}
 
 \item{rweights}{A generator for initial weights in the network. By default, 
 values are generated uniformly from (-1, -0.5) U (0.5, 1). The weights will

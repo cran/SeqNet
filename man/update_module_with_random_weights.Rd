@@ -21,7 +21,7 @@ An updated 'network_module' object.
 }
 \description{
 The small-world network is generated using the Watts-Strogatz method.
-See ?igraph::watts.strogatz.game for details.
+See \code{\link[igraph]{watts.strogatz.game}} for details.
 }
 \examples{
 # Create a random module. 

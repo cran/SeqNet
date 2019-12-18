@@ -10,8 +10,8 @@ all_networks_contain_same_nodes(network_list)
 \item{network_list}{A list of 'network' objects.}
 }
 \value{
-A logical value; TRUE indicates the networks contain the same nodes,
-FALSE indicates otherwise.
+A logical value; \code{TRUE} indicates the networks contain the same 
+nodes, and \code{FALSE} indicates otherwise.
 }
 \description{
 Internal function to check if a list of networks all contain the same nodes.

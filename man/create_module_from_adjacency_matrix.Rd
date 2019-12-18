@@ -14,9 +14,10 @@ create_module_from_adjacency_matrix(adjacency_matrix, nodes = NULL,
 contained in this module.}
 
 \item{module_name}{(optional) Character string specifying the name of the 
-module. If NULL, the module will be unnamed.}
+module. If \code{NULL}, the module will be unnamed.}
 
-\item{run_checks}{If TRUE, then the 'adjacency_matrix' argument is checked.}
+\item{run_checks}{If \code{TRUE}, then the \code{adjacency_matrix} argument 
+is checked.}
 }
 \value{
 A 'network_module' object.
@@ -24,7 +25,7 @@ A 'network_module' object.
 \description{
 The edges in the module will be set to the edges in the adjacency matrix. 
 The edges are undirected, and only the lower triangle of the
-matrix is considered. See ?set_module_edges for more details.
+matrix is considered. See \code{\link{set_module_edges}} for more details.
 }
 \examples{
 nw <- random_network(10)

@@ -8,8 +8,8 @@
 #' @param n The number of samples to generate.
 #' @param network A 'network' object or list of 'network' objects.
 #' @param reference A data.frame containing reference gene expression data. Rows
-#' should correspond to samples and columns to genes. If NULL, then the kidney 
-#' dataset is used.
+#' should correspond to samples and columns to genes. If \code{NULL}, then the 
+#' kidney dataset is used.
 #' @param verbose Boolean indicator for message output.
 #' @return A list containing the simulated expression data and the reference 
 #' dataset. If a list of networks were provided, then the results for
@@ -29,8 +29,8 @@ gen_rnaseq <- function(n,
   }
   
   single_network <- TRUE
-  if(!(class(network) == "network")) {
-    if(is.list(network) && all(sapply(network, function(nw) class(nw) == "network"))) {
+  if(!is(network, "network")) {
+    if(is.list(network) && all(sapply(network, function(nw) is(nw, "network")))) {
       p <- network[[1]]$p
       if(length(network) > 1 && !all(sapply(network[-1], function(nw) nw$p == p))) {
         stop(paste0("'", deparse(substitute(network)), 

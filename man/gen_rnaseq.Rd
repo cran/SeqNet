@@ -12,8 +12,8 @@ gen_rnaseq(n, network, reference = NULL, verbose = TRUE)
 \item{network}{A 'network' object or list of 'network' objects.}
 
 \item{reference}{A data.frame containing reference gene expression data. Rows
-should correspond to samples and columns to genes. If NULL, then the kidney 
-dataset is used.}
+should correspond to samples and columns to genes. If \code{NULL}, then the 
+kidney dataset is used.}
 
 \item{verbose}{Boolean indicator for message output.}
 }

@@ -16,7 +16,7 @@ correspond to a gene.}
 \value{
 Returns a list containing a matrix of parameter estimates 'size', 
 'mu', and 'rho' for each gene in the reference, and the reference dataset
-used.
+used. The parameter matrix can be used in \code{\link{gen_zinb}}.
 }
 \description{
 The observations in the reference dataset should be as homogeneous as possible.

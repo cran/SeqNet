@@ -12,9 +12,9 @@ rewire_connections_to_node(x, node, prob_rewire = 1, weights = NULL,
 
 \item{node}{The node to rewire.}
 
-\item{prob_rewire}{A value between 0 and 1, inclusive. Each connection to 'node' 
-will be rewired with probability equal to 'prob_rewire'. Note, the degree of 
-'node' is unchanged after this operation.}
+\item{prob_rewire}{A value between 0 and 1, inclusive. Each connection to 
+\code{node} will be rewired with probability equal to \code{prob_rewire}. 
+Note, the degree of \code{node} is unchanged after this operation.}
 
 \item{weights}{(Optional) A vector of weights for each node. These are used
 in addition to the degree of each node when sampling nodes to rewire.}
@@ -23,11 +23,12 @@ in addition to the degree of each node when sampling nodes to rewire.}
 
 \item{beta}{A positive value used to parameterize the Beta distribution.}
 
-\item{epsilon}{A small constant added to the sampling probability of each node.}
+\item{epsilon}{A small constant added to the sampling probability of each 
+node.}
 
-\item{run_checks}{If TRUE and 'x' is a matrix, then it is checked that 'x' is an
-adjacency matrix. This catches the case where 'x' is a weighted matrix, in which
-case the weights are removed and a warning is given.}
+\item{run_checks}{If \code{TRUE} and 'x' is a matrix, then it is checked that 
+'x' is an adjacency matrix. This catches the case where 'x' is a weighted 
+matrix, in which case the weights are removed and a warning is given.}
 
 \item{...}{Additional arguments.}
 }

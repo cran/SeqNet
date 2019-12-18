@@ -7,7 +7,7 @@
 create_cytoscape_file(g)
 }
 \arguments{
-\item{g}{A 'network_plot' object. See ?plot_network().}
+\item{g}{A 'network_plot' object. See \code{\link{plot_network}}.}
 }
 \description{
 The returned data frame can be saved as a .csv file. Then, in Cytopscape use 

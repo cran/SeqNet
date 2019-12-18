@@ -11,9 +11,10 @@ random_module(nodes, module_name = NULL, ...)
 are contained in this module.}
 
 \item{module_name}{(optional) Character string specifying the name of the 
-module. If NULL, the module will be unnamed.}
+module. If \code{NULL}, the module will be unnamed.}
 
-\item{...}{Additional arguments passed to 'random_module_structure()'.}
+\item{...}{Additional arguments passed to 
+\code{\link{random_module_structure}}.}
 }
 \value{
 A 'network_module' object.

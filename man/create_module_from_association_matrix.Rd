@@ -14,7 +14,7 @@ create_module_from_association_matrix(association_matrix, nodes = NULL,
 contained in this module.}
 
 \item{module_name}{(optional) Character string specifying the name of the 
-module. If NULL, the module will be unnamed.}
+module. If \code{NULL}, the module will be unnamed.}
 }
 \value{
 A 'network_module' object.
@@ -22,7 +22,8 @@ A 'network_module' object.
 \description{
 The edge weights in the module will be set to the corresponding values
 in the association matrix. The edges are undirected, and only the lower 
-triangle of the matrix is considered. See ?set_module_weights for more details.
+triangle of the matrix is considered. See \code{\link{set_module_weights}} 
+for more details.
 }
 \examples{
 nw <- random_network(10)

@@ -7,10 +7,10 @@
 \method{print}{network_plot}(x, ...)
 }
 \arguments{
-\item{x}{A 'network_plot' object obtained from plot.network() or
-plot_network().}
+\item{x}{A 'network_plot' object obtained from \code{\link{plot.network}} or
+\code{\link{plot_network}}.}
 
-\item{...}{Additional arguments passed to plot().}
+\item{...}{Additional arguments passed to \code{\link[graphics]{plot}}.}
 }
 \description{
 Displays the network plot.

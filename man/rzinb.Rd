@@ -9,9 +9,9 @@ rzinb(n, size, mu, rho)
 \arguments{
 \item{n}{The number of random values to return.}
 
-\item{size}{The dispersion paramater used in dnbinom.}
+\item{size}{The dispersion paramater used in \code{\link[stats]{dnbinom}}.}
 
-\item{mu}{The distribution mean.}
+\item{mu}{The mean parameter used in \code{\link[stats]{dnbinom}}.}
 
 \item{rho}{The zero-inflation parameter.}
 }

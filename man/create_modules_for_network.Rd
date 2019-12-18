@@ -30,7 +30,7 @@ module.}
 \item{sample_module_nodes_fn}{A function used for sampling nodes for a new 
 module.}
 
-\item{...}{Additional arguments passed to random_module().}
+\item{...}{Additional arguments passed to \code{\link{random_module}}.}
 }
 \value{
 A list containing the indicies for genes contained in each module.

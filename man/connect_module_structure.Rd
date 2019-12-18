@@ -25,13 +25,11 @@ A modified adjacency matrix
 Connect disconnected components in an adjacency matrix
 }
 \note{
-When connecting two components, a node is sampled from each with
-probability proportional to ecdf(weights)(weights)^eta + epsilon,
-where 'weights' are subset to only those nodes in the corresponding component.
-When 'eta' = 0, this results in uniform sampling. When 'eta' > 0, 
-nodes having larger 'weight' are more likely to be selected, where 'weight'
-is equal to 'weights' + degree. (If Arugment 'weights' is NULL, then 'weight'
-is simply the node degree).
+This function is used in \code{\link{random_module_structure}} to 
+reconnect any disconnected components after edge removal and rewiring. 
+When connecting two components, a node is sampled from each component
+with probability that is dependent on node degree; those two nodes are then
+connected, which connects the components.
 }
 \examples{
 # This function is used in `random_module_structure()` to reconnect any

@@ -23,7 +23,8 @@ as the weight, where m_i is the number of modules containing gene i.
 \note{
 If a matrix is provided, it is assumed to be a partial correlation matrix;
 a warning is given in this case. To avoid the warning message, convert the
-matrix into a network object using 'create_network_from_association_matrix()'.
+matrix into a network object using 
+\code{\link{create_network_from_association_matrix}}.
 }
 \examples{
 # Create a random network with 10 nodes and add random edge weights.

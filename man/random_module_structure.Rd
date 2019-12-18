@@ -16,11 +16,12 @@ random_module_structure(size, prob_rewire = 1, prob_remove = 0.5,
 \item{prob_remove}{The probability of removing an edge.}
 
 \item{weights}{(Optional) Weights used for sampling nodes. See 
-?rewire_connections_to_node and ?remove_connections_to_node for details.}
+\code{\link{rewire_connections_to_node}} and 
+\code{\link{remove_connections_to_node}} for details.}
 
 \item{neig_size}{The neighborhood size within which the nodes of the 
-ring lattice are connected. The initial degree of each node is 2 * 'neig_size',
-so long as 'size' >= (1 + 2 * 'neig_size')}
+ring lattice are connected. The initial degree of each node is 
+\code{2 * neig_size}, so long as \code{size >= (1 + 2 * neig_size)}.}
 
 \item{alpha}{A positive value used to parameterize the Beta distribution.}
 
