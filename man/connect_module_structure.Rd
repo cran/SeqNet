@@ -4,8 +4,13 @@
 \alias{connect_module_structure}
 \title{Connect disconnected components in an adjacency matrix}
 \usage{
-connect_module_structure(adj, weights = NULL, alpha = 100, beta = 1,
-  epsilon = 10^-5)
+connect_module_structure(
+  adj,
+  weights = NULL,
+  alpha = 100,
+  beta = 1,
+  epsilon = 10^-5
+)
 }
 \arguments{
 \item{adj}{An adjacency matrix to modify.}
@@ -25,8 +30,8 @@ A modified adjacency matrix
 Connect disconnected components in an adjacency matrix
 }
 \note{
-This function is used in \code{\link{random_module_structure}} to 
-reconnect any disconnected components after edge removal and rewiring. 
+This function is used in \code{\link{random_module_structure}} to
+reconnect any disconnected components after edge removal and rewiring.
 When connecting two components, a node is sampled from each component
 with probability that is dependent on node degree; those two nodes are then
 connected, which connects the components.

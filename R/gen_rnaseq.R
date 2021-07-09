@@ -9,11 +9,13 @@
 #' @param network A 'network' object or list of 'network' objects.
 #' @param reference A data.frame containing reference gene expression data. Rows
 #' should correspond to samples and columns to genes. If \code{NULL}, then the 
-#' kidney dataset is used.
+#' \code{\link{reference}} dataset is used.
 #' @param verbose Boolean indicator for message output.
 #' @return A list containing the simulated expression data and the reference 
 #' dataset. If a list of networks were provided, then the results for
 #' each network are returned as a list.
+#' @references 
+#' \insertRef{grimes21}{SeqNet}
 #' @export 
 #' @examples 
 #' nw <- random_network(10) # Create a random network with 10 nodes.

@@ -10,7 +10,11 @@
 \item{x}{A 'network_plot' object obtained from \code{\link{plot.network}} or
 \code{\link{plot_network}}.}
 
-\item{...}{Additional arguments passed to \code{\link[graphics]{plot}}.}
+\item{...}{Additional arguments passed to \code{\link[graphics:plot.default]{plot}}.}
+}
+\value{
+Creates a plot of the network and returns a graph object.
+See \code{\link{plot_network}} for details.
 }
 \description{
 Displays the network plot.

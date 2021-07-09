@@ -12,6 +12,10 @@
 
 \item{...}{Additional arguments passed to \code{\link[igraph]{plot.igraph}}.}
 }
+\value{
+Creates a plot of the network and returns a graph object.
+See \code{\link{plot_network}} for details.
+}
 \description{
 Plot function for 'network_plot' class
 }

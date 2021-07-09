@@ -4,8 +4,15 @@
 \alias{sample_link_nodes}
 \title{Sample link nodes for new module}
 \usage{
-sample_link_nodes(n, nodes, degree, alpha = 100, beta = 1,
-  epsilon = 10^-5, ...)
+sample_link_nodes(
+  n,
+  nodes,
+  degree,
+  alpha = 100,
+  beta = 1,
+  epsilon = 10^-5,
+  ...
+)
 }
 \arguments{
 \item{n}{The number of link nodes to sample.}

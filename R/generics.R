@@ -159,6 +159,7 @@ get_sigma.matrix <- function(x, ...) {
 #' @param ... Additional arguments.
 #' object are weighted by 0s and 1s, and returns \code{TRUE} otherwise. If there
 #' are no connections in the module, then this function returns \code{TRUE}.
+#' @return A Boolean value indicating whether the input is weighted.
 #' @export
 #' @examples 
 #' # Create a random network with 10 nodes. 
@@ -246,7 +247,7 @@ remove_weights.matrix <- function(x, ...) {
 #' 
 #' @param x Either a 'network', 'network_module', or 'matrix' object.
 #' @param ... Additional arguments.
-#' @return A vector containing the node names or node indicies.
+#' @return A vector containing the node names or node indices.
 #' @note Modules do not retain the names of each node, so the node indicies are
 #' returned instead. These can be used to index into the vector of node
 #' names obtained from the network.

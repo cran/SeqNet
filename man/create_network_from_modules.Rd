@@ -4,8 +4,12 @@
 \alias{create_network_from_modules}
 \title{Create a network object.}
 \usage{
-create_network_from_modules(p, module_list,
-  node_names = as.character(1:p), ...)
+create_network_from_modules(
+  p,
+  module_list,
+  node_names = as.character(1:p),
+  ...
+)
 }
 \arguments{
 \item{p}{The number of nodes in the graph}
@@ -15,37 +19,37 @@ create_network_from_modules(p, module_list,
 \item{node_names}{(optional) Vector of strings providing names for each node
 in the graph. Default names are "1", "2", ..., "p".}
 
-\item{...}{Arguments to be passed to other methods. Possible arguments 
+\item{...}{Arguments to be passed to other methods. Possible arguments
 include:
 
 \tabular{ll}{
 prob_rewire \tab
 The probability of removing a connection from the local network
- structure; this is applied to each edge created. Used in 
- \code{\link{random_module_structure}}. \cr
+structure; this is applied to each edge created. Used in
+\code{\link{random_module_structure}}. \cr
 
-prob_remove \tab 
+prob_remove \tab
 The probability of rewiring a connection from the local network
- structure; this is applied every connection of each node. See 
- \code{\link{random_module_structure}}. \cr
- 
-neig_size \tab  
-The initial degree of each node when constructing the ring lattice. 
- See \code{\link{random_module_structure}}. \cr
- 
-alpha \tab 
+structure; this is applied every connection of each node. See
+\code{\link{random_module_structure}}. \cr
+
+neig_size \tab
+The initial degree of each node when constructing the ring lattice.
+See \code{\link{random_module_structure}}. \cr
+
+alpha \tab
 A positive value used to parameterize the Beta distribution used
- to sample nodes based on their degree. Larger values will place more weight 
- on highly connected nodes. See \code{\link{random_module_structure}}. \cr
+to sample nodes based on their degree. Larger values will place more weight
+on highly connected nodes. See \code{\link{random_module_structure}}. \cr
 
 beta \tab A positive value used to parameterize the Beta distribution used
- to sample nodes based on their degree. Set to 1 by default. Increasing this
- parameter will cause the sampling to favor moderately connected nodes over 
- the extreme tail of highly connected nodes. 
- See \code{\link{random_module_structure}}. \cr
+to sample nodes based on their degree. Set to 1 by default. Increasing this
+parameter will cause the sampling to favor moderately connected nodes over
+the extreme tail of highly connected nodes.
+See \code{\link{random_module_structure}}. \cr
 
 epsilon \tab A small constant added to the sampling probability of each node.
- See \code{\link{random_module_structure}}. \cr
+See \code{\link{random_module_structure}}. \cr
 }}
 }
 \value{
@@ -53,8 +57,8 @@ A network object.
 }
 \description{
 Generates a 'network' object from a list of 'network_modules', The modules
-are assumed to have their local network structure already generated. 
-Individual modules can be generated using the \code{\link{random_module}} 
+are assumed to have their local network structure already generated.
+Individual modules can be generated using the \code{\link{random_module}}
 function.
 }
 \examples{

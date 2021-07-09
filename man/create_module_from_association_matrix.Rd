@@ -4,8 +4,11 @@
 \alias{create_module_from_association_matrix}
 \title{Create a module from an association matrix}
 \usage{
-create_module_from_association_matrix(association_matrix, nodes = NULL,
-  module_name = NULL)
+create_module_from_association_matrix(
+  association_matrix,
+  nodes = NULL,
+  module_name = NULL
+)
 }
 \arguments{
 \item{association_matrix}{The association matrix used to create the module.}
@@ -13,7 +16,7 @@ create_module_from_association_matrix(association_matrix, nodes = NULL,
 \item{nodes}{A numeric vector indicating which nodes in the network are
 contained in this module.}
 
-\item{module_name}{(optional) Character string specifying the name of the 
+\item{module_name}{(optional) Character string specifying the name of the
 module. If \code{NULL}, the module will be unnamed.}
 }
 \value{
@@ -21,8 +24,8 @@ A 'network_module' object.
 }
 \description{
 The edge weights in the module will be set to the corresponding values
-in the association matrix. The edges are undirected, and only the lower 
-triangle of the matrix is considered. See \code{\link{set_module_weights}} 
+in the association matrix. The edges are undirected, and only the lower
+triangle of the matrix is considered. See \code{\link{set_module_weights}}
 for more details.
 }
 \examples{

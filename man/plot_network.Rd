@@ -4,10 +4,18 @@
 \alias{plot_network}
 \title{Visualize a network}
 \usage{
-plot_network(network, compare_graph = NULL, as_subgraph = FALSE,
-  node_scale = 4, edge_scale = 1, node_color = adjustcolor("orange",
-  0.5), generate_layout = igraph::nicely, include_vertex_labels = TRUE,
-  display_plot = TRUE, ...)
+plot_network(
+  network,
+  compare_graph = NULL,
+  as_subgraph = FALSE,
+  node_scale = 4,
+  edge_scale = 1,
+  node_color = adjustcolor("orange", 0.5),
+  generate_layout = igraph::nicely,
+  include_vertex_labels = TRUE,
+  display_plot = TRUE,
+  ...
+)
 }
 \arguments{
 \item{network}{A 'network', 'network_module', or 'matrix' object.}
@@ -24,28 +32,28 @@ plot_network(network, compare_graph = NULL, as_subgraph = FALSE,
 
 \item{generate_layout}{A function to generate the layout of a graph; used
 if coords is \code{NULL}. See \code{\link[igraph]{layout_}} from \pkg{\link{igraph}}
-for details. Other options include \code{\link[igraph]{as_star}}, 
-\code{\link[igraph]{in_circle}}, and \code{\link[igraph]{with_fr}}, among 
+for details. Other options include \code{\link[igraph:layout_as_star]{as_star}},
+\code{\link[igraph:layout_in_circle]{in_circle}}, and \code{\link[igraph:layout_with_fr]{with_fr}}, among
 many others.}
 
 \item{include_vertex_labels}{If \code{TRUE}, the verticies will be labeled.}
 
-\item{display_plot}{If \code{TRUE} (default), the plot will be generated and 
+\item{display_plot}{If \code{TRUE} (default), the plot will be generated and
 displayed.}
 
 \item{...}{Additional arguments passed to \code{\link[igraph]{plot.igraph}}.}
 }
 \value{
-Creates a plot of the network and returns a graph object. 
-The graph object can be passed back into a future call of 
+Creates a plot of the network and returns a graph object.
+The graph object can be passed back into a future call of
 \code{\link{plot.network}} through the \code{compare_edge} argument, which
-will setup the plot for easier comparison between the old graph and the graph 
+will setup the plot for easier comparison between the old graph and the graph
 of \code{network}.
 }
 \description{
-This function is used to plot a network. The \code{network} argument can be a 
-network object, network module, an adjacency matrix, or an association matrix. 
-If the result of another plot is provided using the \code{compare_graph} argument, 
+This function is used to plot a network. The \code{network} argument can be a
+network object, network module, an adjacency matrix, or an association matrix.
+If the result of another plot is provided using the \code{compare_graph} argument,
 then the layout of this network will be based on that plot.
 }
 \examples{

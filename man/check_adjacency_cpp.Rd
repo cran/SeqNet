@@ -10,8 +10,8 @@ check_adjacency_cpp(m)
 \item{m}{A matrix to check.}
 }
 \value{
-Returns 0 if the matrix is an adjacency matrix. If the matrix is 
-not square, returns 1; if the diagonal entries are not all zero, returns 2; 
+Returns 0 if the matrix is an adjacency matrix. If the matrix is
+not square, returns 1; if the diagonal entries are not all zero, returns 2;
 if the matrix is not symmetric, returns 3; if the matrix contains values
 other than 0 or 1, returns 4.
 }

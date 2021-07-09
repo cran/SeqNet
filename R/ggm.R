@@ -12,6 +12,8 @@
 #' network, many networks, or a single list of networks.
 #' @return A list containing the n by p matrix of samples and the 'network'
 #' object used to generate them.
+#' @references 
+#' \insertRef{grimes21}{SeqNet}
 #' @export
 #' @examples
 #' nw <- random_network(10) # Create a random network with 10 nodes.
@@ -124,6 +126,8 @@ gen_gaussian <- function(n, ...) {
 #' corresponding partial correlation agree.
 #' @return An updated network object containing random weights. If multiple
 #' networks were provided, then a list of network objects is returned.
+#' @references 
+#' \insertRef{grimes21}{SeqNet}
 #' @export
 #' @examples
 #' nw <- random_network(10) # Create a random network with 10 nodes.
@@ -236,6 +240,7 @@ gen_partial_correlations <- function(...,
 #' @param network_list A list of 'network' objects.
 #' @return A logical value; \code{TRUE} indicates the networks contain the same 
 #' nodes, and \code{FALSE} indicates otherwise.
+#' @keywords internal
 all_networks_contain_same_nodes <- function(network_list) {
   n_networks <- length(network_list)
   if(n_networks > 1) {
@@ -260,6 +265,7 @@ all_networks_contain_same_nodes <- function(network_list) {
 #' 
 #' @param ... The 'network' object(s) or list of networks.
 #' @return A list of 'network' objects.
+#' @keywords internal
 get_network_arguments <- function(...) {
   network_list <- list(...)
   if(length(network_list) == 0) {
@@ -304,6 +310,7 @@ get_network_arguments <- function(...) {
 #' modules, and \code{FALSE} indicates otherwise. Note, this only checks that 
 #' the modules contain the same nodes - the structure of the modules are allowed 
 #' to differ.
+#' @keywords internal
 all_networks_contain_same_modules <- function(network_list) {
   n_networks <- length(network_list)
   if(n_networks > 1) {

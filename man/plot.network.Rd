@@ -4,36 +4,35 @@
 \alias{plot.network}
 \title{Plot function for 'network' object}
 \usage{
-\method{plot}{network}(x, compare_graph = NULL, show_modules = FALSE,
-  as_subgraph = FALSE, ...)
+\method{plot}{network}(x, compare_graph = NULL, show_modules = FALSE, as_subgraph = FALSE, ...)
 }
 \arguments{
 \item{x}{A 'network' object.}
 
 \item{compare_graph}{The plot of another network to use for comparison.}
 
-\item{show_modules}{If \code{TRUE}, the modules will highlighted in the graph. 
-Defaults to \code{FALSE} if there is exactly one module in the network and to 
+\item{show_modules}{If \code{TRUE}, the modules will highlighted in the graph.
+Defaults to \code{FALSE} if there is exactly one module in the network and to
 \code{TRUE} otherwise.}
 
-\item{as_subgraph}{If \code{TRUE}, only nodes of positive degree will be shown. 
-Defaults to \code{FALSE} if there are 100 or fewer nodes in the network and to 
+\item{as_subgraph}{If \code{TRUE}, only nodes of positive degree will be shown.
+Defaults to \code{FALSE} if there are 100 or fewer nodes in the network and to
 \code{TRUE} otherwise.}
 
-\item{...}{Additional arguments passed to \code{\link{plot_modules}} or 
+\item{...}{Additional arguments passed to \code{\link{plot_modules}} or
 \code{\link{plot_network}}.}
 }
 \value{
-Creates a plot of the module and returns a graph object. 
+Creates a plot of the module and returns a graph object.
 See \code{\link{plot_modules}} and \code{\link{plot_network}} for details.
 
-A 'network_plot' object for the network. This object can be passed 
-back into a future call of \code{\link{plot.network}} through the 
-\code{compare_graph} argument, which will setup the plot for easier 
+A 'network_plot' object for the network. This object can be passed
+back into a future call of \code{\link{plot.network}} through the
+\code{compare_graph} argument, which will setup the plot for easier
 comparison between the old graph and the new graph of \code{network}.
 }
 \description{
-This function plots the given network. If the result of another plot is 
+This function plots the given network. If the result of another plot is
 provided, this plot will be modified for easier comparison.
 }
 \examples{

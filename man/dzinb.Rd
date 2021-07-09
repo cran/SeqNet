@@ -9,9 +9,9 @@ dzinb(x, size, mu, rho = 0, log = FALSE)
 \arguments{
 \item{x}{A vector of quantities.}
 
-\item{size}{The dispersion paramater used in \code{\link[stats]{dnbinom}}.}
+\item{size}{The dispersion paramater used in \code{\link[stats:NegBinomial]{dnbinom}}.}
 
-\item{mu}{The mean parameter used in \code{\link[stats]{dnbinom}}.}
+\item{mu}{The mean parameter used in \code{\link[stats:NegBinomial]{dnbinom}}.}
 
 \item{rho}{The zero-inflation parameter.}
 
@@ -30,4 +30,7 @@ y <- qzinb(p, 1, 10, 0.1)
 all(x == y)
 # Compute P(0 < X < 5) for X ~ ZINB(1, 10, 0.1)
 sum(dzinb(0:5, 1, 10, 0.1))
+}
+\references{
+\insertRef{grimes21}{SeqNet}
 }

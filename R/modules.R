@@ -195,6 +195,8 @@ create_module_from_association_matrix <- function(association_matrix,
 #' @param ... Additional arguments passed to 
 #' \code{\link{random_module_structure}}.
 #' @return A 'network_module' object.
+#' @references 
+#' \insertRef{grimes21}{SeqNet}
 #' @export
 #' @examples 
 #' module <- random_module(1:10)
@@ -589,6 +591,8 @@ connect_module_structure <- function(adj,
                                      alpha = 100,
                                      beta = 1,
                                      epsilon = 10^-5) {
+  alpha <- 100
+  beta <- 1
   nodes <- 1:ncol(adj)
   if(is.null(weights)) {
     weights <- rep(0, ncol(adj))
@@ -640,7 +644,7 @@ connect_module_structure <- function(adj,
 #' Generate small-world network structure for module
 #' 
 #' The small-world network is generated using the Watts-Strogatz method.
-#' See \code{\link[igraph]{watts.strogatz.game}} for details.
+#' See \code{\link[igraph:sample_smallworld]{watts.strogatz.game}} for details.
 #' @param module The network_module object to modify.
 #' @param rdist A distribution function that generates random numbers. The first
 #' argument should specify the number of weights to generate. By default, 

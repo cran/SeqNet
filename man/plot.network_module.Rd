@@ -12,7 +12,7 @@
 \item{...}{Additional arguments passed to \code{\link{plot_network}}.}
 }
 \value{
-Creates a plot of the module and returns a graph object. 
+Creates a plot of the module and returns a graph object.
 See \code{\link{plot_network}} for details.
 }
 \description{

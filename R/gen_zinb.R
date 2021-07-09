@@ -1,11 +1,13 @@
 #' The Zero-Inflated Negative Binomial Distribution
 #' 
 #' @param x A vector of quantities.
-#' @param size The dispersion paramater used in \code{\link[stats]{dnbinom}}.
-#' @param mu The mean parameter used in \code{\link[stats]{dnbinom}}.
+#' @param size The dispersion paramater used in \code{\link[stats:NegBinomial]{dnbinom}}.
+#' @param mu The mean parameter used in \code{\link[stats:NegBinomial]{dnbinom}}.
 #' @param rho The zero-inflation parameter.
 #' @param log Logical; if \code{TRUE}, then log(d) is returned.
 #' @return The value(s) of the density function evaluated at \code{x}.
+#' @references 
+#' \insertRef{grimes21}{SeqNet}
 #' @export 
 #' @examples 
 #' x <- rzinb(10, 1, 10, 0.1)
@@ -25,12 +27,13 @@ dzinb <- function(x, size, mu, rho = 0, log = FALSE) {
 #' The Zero-Inflated Negative Binomial Distribution
 #'
 #' @param p A vector of probabilities
-#' @param size The dispersion paramater used in \code{\link[stats]{dnbinom}}
-#' @param mu The mean parameter used in \code{\link[stats]{dnbinom}}.
+#' @param size The dispersion paramater used in \code{\link[stats:NegBinomial]{dnbinom}}
+#' @param mu The mean parameter used in \code{\link[stats:NegBinomial]{dnbinom}}.
 #' @param rho The zero-inflation parameter.
 #' @param lower.tail Logical; if \code{TRUE}, then probabilities are P(X <= x).
 #' Otherwise, P(X > x).
 #' @param log.p Logical; if \code{TRUE}, then exp(p) is used.
+#' @return The quantiles for the given probabilities.
 #' @export 
 #' @examples 
 #' x <- rzinb(10, 1, 10, 0.1)
@@ -54,12 +57,13 @@ qzinb <- function (p, size, mu, rho, lower.tail = TRUE, log.p = FALSE) {
 #' The Zero-Inflated Negative Binomial Distribution
 #'
 #' @param q A vector of quantities.
-#' @param size The dispersion paramater used in \code{\link[stats]{dnbinom}}
-#' @param mu The mean parameter used in \code{\link[stats]{dnbinom}}.
+#' @param size The dispersion paramater used in \code{\link[stats:NegBinomial]{dnbinom}}
+#' @param mu The mean parameter used in \code{\link[stats:NegBinomial]{dnbinom}}.
 #' @param rho The zero-inflation parameter.
 #' @param lower.tail Logical; if \code{TRUE}, then probabilities are P(X <= x).
 #' Otherwise, P(X > x).
 #' @param log.p Logical; if \code{TRUE}, then log(p) is returned.
+#' @return The probabilities for the given \code{q} values.
 #' @export 
 #' @examples 
 #' x <- rzinb(10, 1, 10, 0.1)
@@ -83,9 +87,10 @@ pzinb <- function (q, size, mu, rho, lower.tail = TRUE, log.p = FALSE) {
 #' The Zero-Inflated Negative Binomial Distribution
 #'
 #' @param n The number of random values to return.
-#' @param size The dispersion paramater used in \code{\link[stats]{dnbinom}}.
-#' @param mu The mean parameter used in \code{\link[stats]{dnbinom}}.
+#' @param size The dispersion paramater used in \code{\link[stats:NegBinomial]{dnbinom}}.
+#' @param mu The mean parameter used in \code{\link[stats:NegBinomial]{dnbinom}}.
 #' @param rho The zero-inflation parameter.
+#' @return The randomly generated values from the distribution.
 #' @export 
 #' @examples 
 #' x <- rzinb(10, 1, 10, 0.1)
@@ -114,7 +119,8 @@ rzinb <- function (n, size, mu, rho) {
 #' @param reference Either a vector or data.frame of counts from a reference
 #' gene expression profile. If a data.frame is provided, each column should
 #' correspond to a gene. If both \code{reference} and \code{params} are 
-#' \code{NULL}, then parameters are estimated from the kidney dataset.
+#' \code{NULL}, then parameters are estimated from the 
+#' \code{\link{reference}} dataset.
 #' @param params A matrix of ZINB parameter values; each column should contain 
 #' the size, mu, and rho parameters for a gene.
 #' @param library_sizes A vector of library sizes. Used only if \code{reference} is 

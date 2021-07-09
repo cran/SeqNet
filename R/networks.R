@@ -220,7 +220,7 @@ create_network_from_association_matrix <- function(association_matrix,
 #' 
 #' \tabular{ll}{
 #' nu \tab 
-#' A value in [0, 1] used to control the amount of overlap among 
+#' A value between 0 and 1 used to control the amount of overlap among 
 #'  modules. Smaller values result in less overlap. Used in 
 #'  \code{\link{sample_module_nodes}}. \cr
 #'  
@@ -261,11 +261,13 @@ create_network_from_association_matrix <- function(association_matrix,
 #' min_module_size \tab 
 #' See \code{\link{create_modules_for_network}}. \cr
 #' 
-#' Max_module_size \tab 
+#' max_module_size \tab 
 #' See \code{\link{create_modules_for_network}}. \cr
 #' }
 #' 
 #' @return An unweighted network object.
+#' @references 
+#' \insertRef{grimes21}{SeqNet}
 #' @export 
 #' @examples 
 #' # Create a random network of 10 nodes
@@ -311,7 +313,9 @@ random_network <- function(p,
 #' @param sample_module_nodes_fn A function used for sampling nodes for a new 
 #' module.
 #' @param ... Additional arguments passed to \code{\link{random_module}}.
-#' @return A list containing the indicies for genes contained in each module.
+#' @return A list containing the indices for genes contained in each module.
+#' @references 
+#' \insertRef{grimes21}{SeqNet}
 #' @export 
 #' @examples 
 #' # Create a two modules (having random structures and sizes) from a pool 
@@ -479,8 +483,9 @@ sample_module_nodes <- function(n, nodes, degree, nu = 0.01, ...) {
     stop("nu must be positive.")
   }
   m <- length(nodes)
-  prob <- rep(1 / m, m)
-  prob[degree > 0] = nu * prob[degree > 0]
+  val <- 1 / m
+  prob <- rep(val, m)
+  prob[degree > 0] = nu * val
   module_nodes <- sample(nodes, n, prob = prob)
   return(module_nodes)
 }

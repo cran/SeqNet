@@ -13,8 +13,8 @@
 #' @param node_color The color used for the nodes.
 #' @param generate_layout A function to generate the layout of a graph; used
 #' if coords is \code{NULL}. See \code{\link[igraph]{layout_}} from \pkg{\link{igraph}}
-#' for details. Other options include \code{\link[igraph]{as_star}}, 
-#' \code{\link[igraph]{in_circle}}, and \code{\link[igraph]{with_fr}}, among 
+#' for details. Other options include \code{\link[igraph:layout_as_star]{as_star}}, 
+#' \code{\link[igraph:layout_in_circle]{in_circle}}, and \code{\link[igraph:layout_with_fr]{with_fr}}, among 
 #' many others.
 #' @param include_vertex_labels If \code{TRUE}, the verticies will be labeled.
 #' @param display_plot If \code{TRUE} (default), the plot will be generated and 
@@ -249,8 +249,8 @@ plot_network <- function(network, compare_graph = NULL, as_subgraph = FALSE,
 #' @param generate_layout A function to generate the layout of a graph; used
 #' if coords is \code{NULL}. See \code{\link[igraph]{layout_}} from 
 #' \pkg{\link{igraph}} for details. Other options include 
-#' \code{\link[igraph]{as_star}}, \code{\link[igraph]{in_circle}}, and 
-#' \code{\link[igraph]{with_fr}}, among many others.
+#' \code{\link[igraph:layout_as_star]{as_star}}, \code{\link[igraph:layout_in_circle]{in_circle}}, and 
+#' \code{\link[igraph:layout_with_fr]{with_fr}}, among many others.
 #' @param include_vertex_labels If \code{TRUE}, the verticies will be labeled.
 #' @param show_legend If \code{TRUE}, a legend for the modules is shown. 
 #' Default is \code{FALSE}
@@ -277,7 +277,7 @@ plot_modules <- function(network, compare_graph = NULL, as_subgraph = TRUE,
                          modules = NULL,
                          node_scale = 4, edge_scale = 1,
                          node_color = adjustcolor("orange", 0.5),
-                         group_color = RColorBrewer::brewer.pal(9, 'Set1'),
+                         group_color = palette.colors(9, "Set 1"),
                          generate_layout = igraph::nicely,
                          include_vertex_labels = TRUE, 
                          show_legend = FALSE,
@@ -622,6 +622,8 @@ plot.network_module <- function(x, ...) {
 #' @param x A 'network_plot' object obtained from \code{\link{plot.network}} or
 #' \code{\link{plot_network}}.
 #' @param ... Additional arguments passed to \code{\link[igraph]{plot.igraph}}.
+#' @return Creates a plot of the network and returns a graph object. 
+#' See \code{\link{plot_network}} for details.
 #' @export
 #' @examples 
 #' nw <- random_network(10)
@@ -660,7 +662,9 @@ plot.network_plot <- function(x, ...) {
 #' Displays the network plot.
 #' @param x A 'network_plot' object obtained from \code{\link{plot.network}} or
 #' \code{\link{plot_network}}.
-#' @param ... Additional arguments passed to \code{\link[graphics]{plot}}.
+#' @param ... Additional arguments passed to \code{\link[graphics:plot.default]{plot}}.
+#' @return Creates a plot of the network and returns a graph object. 
+#' See \code{\link{plot_network}} for details.
 #' @export
 #' @examples 
 #' nw <- random_network(10)
@@ -691,7 +695,7 @@ print.network_plot <- function(x, ...) {
 #' nw <- gen_partial_correlations(nw)
 #' heatmap_network(nw, "Weighted Network")
 heatmap_network <- function(network, main = NULL,
-                            col = colorRampPalette(RColorBrewer::brewer.pal(8, "Greys"))(50),
+                            col = colorRampPalette(gray.colors(8, 0.1, 1))(50),
                             ...) {
   if(is.null(main)) {
     # Use name of network object as the default title.
@@ -740,8 +744,8 @@ heatmap_network <- function(network, main = NULL,
 #' but not \code{network_2}. Default is \code{c("black", "wheat", "red")}.
 #' @param generate_layout A function to generate the layout of a graph; used
 #' if coords is \code{NULL}. See \code{\link[igraph]{layout_}} from \pkg{\link{igraph}}
-#' for details. Other options include \code{\link[igraph]{as_star}}, 
-#' \code{\link[igraph]{in_circle}}, and \code{\link[igraph]{with_fr}}, among 
+#' for details. Other options include \code{\link[igraph:layout_as_star]{as_star}}, 
+#' \code{\link[igraph:layout_in_circle]{in_circle}}, and \code{\link[igraph:layout_with_fr]{with_fr}}, among 
 #' many others.
 #' @param include_vertex_labels If \code{TRUE}, the verticies will be labeled.
 #' @param ... Additional arguments passed to \code{\link[igraph]{plot.igraph}}.
